@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Evolution Twitter Timeline v1.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-04-14 15:16:59+0000\n"
+"Last-Translator: andreashecht <info@the-netbrain.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: evolution-twitter-timeline.php:34
+#@ evolution_twitter
+msgid "Mit diesem Widget erstellst Du eine coole Twitter-Timeline von Deinem Twitter-Account."
+msgstr "Create the cool Embedded Timeline with this widget"
+
+#: evolution-twitter-timeline.php:133
+#@ evolution_twitter
+msgid "Titel:"
+msgstr "Title:"
+
+#: evolution-twitter-timeline.php:138
+#@ evolution_twitter
+msgid "Wähle die Breite der Timeline:"
+msgstr "Choose the width of the timeline:"
+
+#: evolution-twitter-timeline.php:143
+#@ evolution_twitter
+msgid "wähle die Höhe der Timeline:"
+msgstr "Choose the height of the timeline:"
+
+#: evolution-twitter-timeline.php:148
+#@ evolution_twitter
+msgid "Dein Twitter Name:"
+msgstr "Your Twitter name:"
+
+#: evolution-twitter-timeline.php:153
+#@ evolution_twitter
+msgid "Deine Twitter Widget ID:"
+msgstr "Your Twitter Widget ID:"
+
+#: evolution-twitter-timeline.php:158
+#@ evolution_twitter
+msgid "Linkfarbe:"
+msgstr "Link-color:"
+
+#: evolution-twitter-timeline.php:163
+#@ evolution_twitter
+msgid "Rahmenfarbe:"
+msgstr "Border-color:"
+
+#: evolution-twitter-timeline.php:168
+#@ evolution_twitter
+msgid "Wähle eine Themefarbe (Hell oder Dunkel):"
+msgstr "Choose a theme color (light or dark):"
+
+#: evolution-twitter-timeline.php:170
+#@ default
+msgid "Hell"
+msgstr ""
+
+#: evolution-twitter-timeline.php:171
+#@ default
+msgid "Dunkel"
+msgstr ""
+

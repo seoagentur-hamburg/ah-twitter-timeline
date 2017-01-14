@@ -1,30 +1,38 @@
 <?php
+/*
+Plugin Name: AH Twitter Timeline Widget
+Plugin URI:  https://wordpress.org/plugins/evolution-twitter-timeline/
+Description: Creates a new and simple to use widget that outputs the new awesome Twitter Embedded Timeline from your Twitter account. Looks nice in Sidebar and Footer.
+Version:     1.0.5
+Author:      Andreas Hecht
+Author URI:  https://andreas-hecht.com
+License:     GPL2
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: evolution_twitter
+Domain Path: /languages
+*/
 
-  /*
-   Plugin Name: AH Twitter Timeline Widget
-   Plugin URI: https://andreas-hecht.com/
-   Description: Dieses Plugin stellt eine Twitter Timeline deines Twitter-Accounts dar. Ein Widget für die Sidebar.
-   Version: 1.0
-   Author: Andreas Hecht
-   Author URI: http://andreas-hecht.com
-   License: GPL2
-   */
 
-class AH_Twitter_Timeline_Widget extends WP_Widget {
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
+
+class Evolution_Twitter_Timeline_Widget extends WP_Widget {
 
 /**
  * Register widget with WordPress.
  */
     public function __construct() {
 		parent::__construct(
-	 		'ah_twitter_timeline', // Base ID
+	 		'evolution_twitter_timeline', // Base ID
 			'AH Twitter Timeline Widget', // Name
 			array( 'description' => __( 'Mit diesem Widget erstellst Du eine coole Twitter-Timeline von Deinem Twitter-Account.', 'evolution_twitter' ), ) // Args
 		);
 
 		// Registers Script with WordPress ( to wp_footer(); )
-		wp_register_script( 'widgets', 'http://platform.twitter.com/widgets.js','','', true );
+		wp_register_script( 'widgets', '//platform.twitter.com/widgets.js','','', true );
 
 		// Adding the javascript only if widget in use
 			if ( is_active_widget( false, false, $this->id_base, true ) ) {
@@ -51,16 +59,14 @@ class AH_Twitter_Timeline_Widget extends WP_Widget {
 		$width		                 = $instance['width'];
 		$height		                 = $instance['height'];
 		$twitter_name	      = $instance['twitter_name'];
-		$widget_id	              = $instance['widget_id'];
 		$link_color	               = $instance['link_color'];
 		$theme_color	       = $instance['theme_color'];
-		$bordercolor	         = $instance['border_color'];
 		
 		echo $before_widget;
         if ( $title )
        echo $before_title . $title . $after_title;
 
- 		echo '<a class="twitter-timeline" data-widget-id="'.$widget_id.'" href="https://twitter.com/" '.$twitter_name.' data-border-color="'.$bordercolor.'" width="'.$width.'" height="'.$height.'" data-theme="'.$theme_color.'" data-link-color="'.$link_color.'" >Tweets von @"'.$twitter_name.'"</a>' ;
+ 		echo '<a class="twitter-timeline" href="https://twitter.com/'.$twitter_name.'" data-width="'.$width.'" data-height="'.$height.'" data-theme="'.$theme_color.'" data-link-color="'.$link_color.'" >Tweets von @"'.$twitter_name.'"</a>' ;
       
  		echo $after_widget;
 
@@ -84,10 +90,8 @@ class AH_Twitter_Timeline_Widget extends WP_Widget {
 		$instance['width'] 		          = strip_tags( $new_instance['width'] );
 		$instance['height'] 		      = strip_tags($new_instance['height'] );
 		$instance['twitter_name']  = strip_tags($new_instance['twitter_name'] );
-		$instance['widget_id']		   = strip_tags($new_instance['widget_id'] );
 		$instance['link_color']		    = strip_tags($new_instance['link_color'] );
 		$instance['theme_color']	= strip_tags($new_instance['theme_color'] );
-		$instance['border_color']	= strip_tags($new_instance['border_color'] );
 
 		return $instance;
 
@@ -106,17 +110,15 @@ class AH_Twitter_Timeline_Widget extends WP_Widget {
     	/**
     	 * Set Default Value for widget form
     	 */   	
-    	$default_value	=	array("title"=> "Follow me on Twitter", "width" => "340", "height" => "400", "twitter_name" => "AndreasHecht_HH", "widget_id" => "635875465417371648", "link_color" => "#f96e5b", "border_color" => "#e8e8e8", "theme_color" => "light" );
+    	$default_value	=	array("title"=> "Follow me on Twitter", "width" => "340", "height" => "400", "twitter_name" => "AndreasHecht_HH",  "link_color" => "#f96e5b", "theme_color" => "light" );
     	$instance		=	wp_parse_args((array)$instance,$default_value);
         
     		$title		              = esc_attr($instance['title']);
         	$width		           = esc_attr($instance['width']);
         	$height		           = esc_attr($instance['height']);
         	$twitter_name	= esc_attr($instance['twitter_name']);
-        	$widget_id	        = esc_attr($instance['widget_id']);
         	$link_color	         = esc_attr($instance['link_color']);
         	$theme_color	 = esc_attr($instance['theme_color']);
-        	$border_color	 = esc_attr($instance['border_color']);
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Titel:', 'evolution_twitter'); ?></label>
@@ -139,19 +141,9 @@ class AH_Twitter_Timeline_Widget extends WP_Widget {
         </p>
         
         <p>
-			<label for="<?php echo $this->get_field_id('widget_id'); ?>"><?php _e('Deine Twitter Widget ID:', 'evolution_twitter'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('widget_id'); ?>" name="<?php echo $this->get_field_name('widget_id'); ?>" type="text" value="<?php echo $widget_id; ?>" />
-        </p>
-        
-        <p>
 			<label for="<?php echo $this->get_field_id('link_color'); ?>"><?php _e('Linkfarbe:', 'evolution_twitter'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('link_color'); ?>" name="<?php echo $this->get_field_name('link_color'); ?>" type="text" value="<?php echo $link_color; ?>" />
         </p> 
-
-        <p>
-			<label for="<?php echo $this->get_field_id('border_color'); ?>"><?php _e('Rahmenfarbe:', 'evolution_twitter'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('border_color'); ?>" name="<?php echo $this->get_field_name('border_color'); ?>" type="text" value="<?php echo $border_color; ?>" />
-        </p>
         
         <p>
 			<label for="<?php echo $this->get_field_id('theme_color'); ?>"><?php _e('Wähle eine Themefarbe (Hell oder Dunkel):', 'evolution_twitter'); ?></label>
@@ -166,9 +158,20 @@ class AH_Twitter_Timeline_Widget extends WP_Widget {
 
 }
 
+
+/**
+ * Loads the Textdomain for the english translation
+ */
+function evolution_twitter_timeline_load_plugin_textdomain() {
+    load_plugin_textdomain( 'evolution_twitter', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'evolution_twitter_timeline_load_plugin_textdomain' );
+
+
+
 /**
  * Registers our Widget.
  */
 add_action( 'widgets_init', function(){
-	register_widget( 'AH_Twitter_Timeline_Widget' );
+	register_widget( 'Evolution_Twitter_Timeline_Widget' );
 });
